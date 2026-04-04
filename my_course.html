@@ -1,0 +1,1022 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Планеты и их спутники</title>
+    <style>
+        * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Arial, sans-serif;
+}
+
+body {
+    background-color: #ffffff;
+    color: #000000;
+    line-height: 1.5;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.header {
+    height: auto;
+    min-height: 96px;
+}
+
+.header-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    padding: 10px 0;
+}
+
+.logo img {
+    width: 120px;
+    height: auto;
+    margin-left: 10px;
+    margin-top: 5px;
+}
+
+.title-header {
+    font-size: 12px;
+    max-width: 200px;
+    height: auto;
+    text-align: center;
+    margin-right: 10px;
+    margin-top: 5px;
+}
+
+hr {
+    border: none;
+    background-color: rgb(0, 0, 0);
+    color: rgb(0, 0, 0); 
+    height: 1.5px;
+    margin: 10px 0;
+}
+
+nav {
+    display: flex;
+    justify-content: center;
+    padding: 10px 0;
+}
+
+.nav-links {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+}
+
+.nav-links a {
+    font-size: 14px;
+    color: #000000;
+    text-decoration: none;
+    padding: 5px 10px;
+    transition: color 0.3s ease;
+    outline: none;
+}
+
+.nav-links a:focus {
+    outline: none;
+}
+
+.nav-links a.active {
+    color: #201767;
+    font-weight: 600;
+}
+
+.nav-links a:active {
+    outline: none;
+    border: none;
+}
+
+.nav-links a:focus-visible {
+    outline: 2px solid #9D86CA;
+    outline-offset: 2px;
+}
+
+.course-detail-section {
+    padding: 40px 0 60px;
+    margin-top: 40px;
+}
+
+.back-link {
+    display: inline-block;
+    margin-bottom: 30px;
+    color: #201767; 
+    text-decoration: none;
+    font-size: 16px;
+    transition: color 0.3s;
+}
+
+.back-link:hover {
+    color: #655bb6;
+}
+
+.alert {
+    padding: 15px;
+    border-radius: 6px;
+    margin-bottom: 20px;
+    display: none;
+    animation: fadeIn 0.3s;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.alert-success {
+    color: #298674;
+    border: 2px solid #298674;
+}
+
+.alert-error {
+    color: #c62828;
+    border: 2px solid #c62828;
+}
+
+.course-header {
+    background: white;
+    border-radius: 12px;
+    padding: 30px;
+    margin-bottom: 30px;
+}
+
+.course-title {
+    font-size: 32px;
+    color: #000;
+    margin-bottom: 15px;
+}
+
+.course-description {
+    font-size: 16px;
+    line-height: 1.6;
+    color: #000000;
+    margin-bottom: 20px;
+}
+
+.progress-section {
+    background: white;
+    border-radius: 12px;
+    padding: 30px;
+    margin-bottom: 30px;
+}
+
+.progress-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.progress-bar {
+    width: 100%;
+    height: 10px;
+    background: #e0e0e0;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.progress-fill {
+    height: 100%;
+    background: #201767;
+    transition: width 0.5s ease;
+}
+
+.video-player-section {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 30px;
+    margin-bottom: 30px;
+}
+
+@media (max-width: 1024px) {
+    .video-player-section {
+        grid-template-columns: 1fr;
+    }
+}
+
+.main-video-player {
+    background: white;
+    border-radius: 12px;
+    padding: 30px;
+}
+
+.section-title {
+    font-size: 24px;
+    color: #000;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+}
+
+.video-player-container {
+    position: relative;
+    width: 100%;
+    padding-bottom: 56.25%;
+    height: 0;
+    overflow: hidden;
+    border-radius: 8px;
+    background: #000;
+    margin-bottom: 20px;
+}
+
+.video-player-container video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.mark-watched-btn {
+    display: block;
+    width: 100%;
+    background: #FABA8A;
+    color: white;
+    padding: 12px;
+    border: none;
+    border-radius: 6px;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s;
+    margin-top: 20px;
+    text-align: center;
+}
+
+.mark-watched-btn:hover:not(:disabled) {
+    background: #f7984f;
+    transform: translateY(-7px);
+}
+
+.mark-watched-btn:disabled {
+    background: #ccc;
+    cursor: not-allowed;
+}
+
+.current-video-info {
+    padding: 15px;
+    border-radius: 8px;
+    margin-top: 20px;
+}
+
+.current-video-info h3 {
+    font-size: 18px;
+    color: #000;
+    margin-bottom: 10px;
+}
+
+.current-video-info p {
+    color: #000000;
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+.video-list-sidebar {
+    background: white;
+    border-radius: 12px;
+    padding: 30px;
+    max-height: 700px;
+    overflow-y: auto;
+}
+
+.video-list-title {
+    font-size: 20px;
+    color: #000;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+}
+
+.video-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.video-item {
+    display: flex;
+    align-items: center;
+    padding: 15px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s;
+    text-decoration: none;
+    color: inherit;
+    /*border: 3px solid #F68E8F;*/
+}
+
+.video-item:hover {
+    background-color: #e4e0ff;
+}
+
+.video-item.watched .video-icon {
+    color: #43A491;
+}
+
+.video-item.active {
+    background: #201767;
+    color: white;
+    border-color: #201767;
+}
+
+.video-item.active .video-icon {
+    color: white;
+}
+
+.video-icon {
+    font-size: 20px;
+    margin-right: 15px;
+    color: #917CC0;
+    flex-shrink: 0;
+}
+
+.video-content {
+    flex: 1;
+}
+
+.video-content h4 {
+    font-size: 16px;
+    margin-bottom: 5px;
+    font-weight: 500;
+    color: #000000;
+}
+
+.video-content p {
+    font-size: 13px;
+    color: #000000;
+    margin: 0;
+}
+
+.video-item.active .video-content h4,
+.video-item.active .video-content p {
+    color: white;
+}
+
+.course-skills {
+    padding: 40px;
+    margin-top: 20px;
+}
+
+.skills-title {
+    font-size: 24px;
+    color: #000000;
+    margin-bottom: 25px;
+    text-align: center;
+}
+
+.skills-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+.skill-item {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    border: 3px solid #F68E8F;
+    transition: transform 0.3s ease;
+}
+
+    .skill-item:hover {
+        transform: translateY(-7px);
+
+    }
+
+.skill-item h4 {
+    color: #000000;
+    margin-bottom: 10px;
+    font-size: 18px;
+}
+
+.skill-item p {
+    color: #000000;
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+footer {
+    background-color: #000000;
+    color: white;
+    padding: 40px 0;
+    margin-top: 100px;
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.footer-links a {
+    color: white;
+    text-decoration: none;
+    margin-right: 10px;
+    transition: color 0.3s;
+    font-size: 14px;
+    display: inline-block;
+    margin-bottom: 5px;
+}
+
+.footer-links a:hover {
+    color: #ffffff;
+}
+
+.footer-info {
+    text-align: right;
+    font-size: 13px;
+}
+
+.footer-info p {
+    margin-bottom: 5px;
+}
+
+@media (max-width: 1024px) {
+    .video-player-section {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+    .header-top {
+        flex-direction: column;
+        text-align: center;
+        gap: 10px;
+    }
+    
+    .logo img {
+        margin: 0 auto;
+        float: none;
+        width: 140px;
+    }
+    
+    .title-header {
+        float: none;
+        margin: 0 auto;
+        max-width: 100%;
+        font-size: 11px;
+    }
+    
+    .nav-links {
+        flex-direction: column;
+        gap: 10px;
+        width: 100%;
+    }
+    
+    .nav-links a {
+        margin: 0;
+        padding: 8px;
+        text-align: center;
+        border: none;
+        border-radius: 0;
+        background-color: transparent;
+        min-height: 44px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    .course-detail-section {
+        padding: 30px 0 40px;
+    }
+    
+    .course-header, .main-video-player, .video-list-sidebar, 
+    .progress-section {
+        padding: 20px;
+    }
+    
+    .course-title {
+        font-size: 26px;
+    }
+    
+    .section-title {
+        font-size: 22px;
+    }
+    
+     .course-skills {
+        padding: 30px;
+    }
+    
+    .skills-title {
+        font-size: 22px;
+    }
+    
+    .video-item {
+        padding: 12px;
+    }
+    
+    .video-content h4 {
+        font-size: 15px;
+    }
+    
+    footer {
+        margin-top: 20px;
+    }
+    
+    .footer-content {
+        flex-direction: column;
+        text-align: center;
+        gap: 10px;
+    }
+    
+    .footer-info {
+        text-align: center;
+        margin-top: 10px;
+    }
+    
+    .footer-links {
+        text-align: center;
+    }
+    
+    .footer-links a {
+        margin: 0 5px;
+    }
+}
+
+@media (max-width: 480px) {
+    .container {
+        padding: 0 15px;
+    }
+    
+    .header {
+        padding: 5px 0;
+    }
+    
+    .logo img {
+        width: 100px;
+    }
+    
+    .title-header {
+        font-size: 10px;
+    }
+    
+    .course-title {
+        font-size: 22px;
+    }
+    
+    .course-skills {
+        padding: 20px;
+    }
+    
+    .skills-title {
+        font-size: 20px;
+    }
+    
+    .skill-item {
+        padding: 15px;
+    }
+    
+    .skills-list {
+        grid-template-columns: 1fr;
+    }
+    
+    footer {
+        padding: 20px 0;
+        margin-top: 20px;
+    }
+    
+    .footer-info {
+        font-size: 11px;
+    }
+    
+    .footer-links a {
+        font-size: 12px;
+        margin: 0 3px;
+    }
+}
+
+@media (hover: none) and (pointer: coarse) {
+    .nav-links a {
+        min-height: 44px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    .mark-watched-btn {
+        min-height: 44px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    .video-item:hover {
+        transform: none;
+    }
+    
+    .skill-card:hover {
+        transform: none;
+    }
+}
+    </style>
+</head>
+<body>
+    
+    <header class="header">
+        <div class="header-top">
+            <div class="logo"><a href="index.html"><img src="image/logo.png" alt="logo"></a></div>
+            <div class="title-header">Познавай Вселенную — твой путь к звёздам начинается здесь</div>
+        </div>
+        <hr>
+        
+        <nav>
+            <div class="nav-links">
+                <a href="index.html">Главная</a>
+                <a href="courses.html">Курсы</a>
+                <a href="calendar.html">Календарь событий</a>
+                <a href="cabinet.html">Личный кабинет</a>
+            </div>
+        </nav>
+    </header>
+
+    <section class="course-detail-section">
+        <div class="container">
+            <a href="cabinet.html" class="back-link">← Назад в личный кабинет</a>
+            
+            <div id="alertMessage" class="alert" style="display: none;"></div>
+            
+            <div class="course-header">
+                <h1 class="course-title">Планеты и их спутники</h1>
+                <div class="course-description">
+                    Изучаем особенности планет, их состав, атмосферу и спутники, включая земные и газовые гиганты.
+                </div>
+            </div>
+            
+            <div class="progress-section">
+                <div class="progress-info">
+                    <h3 class="section-title">Ваш прогресс</h3>
+                    <span id="progressPercent">0%</span>
+                </div>
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progressFill" style="width: 0%;"></div>
+                </div>
+                <p id="progressText" style="margin-top: 10px; color: #666; font-size: 14px;">
+                    Просмотрено видео: 0 из 4
+                </p>
+            </div>
+            
+            <div class="video-player-section">
+                <div class="main-video-player">
+                    <h2 class="section-title">Видеокурс</h2>
+                    
+                    <div class="video-player-container">
+                        <video id="mainVideoPlayer" controls>
+                            <source id="videoSource" src="image/primer.mp4" type="video/mp4">
+                            Ваш браузер не поддерживает видео.
+                        </video>
+                    </div>
+                    
+                    <button type="button" id="markWatchedBtn" class="mark-watched-btn">
+                        Отметить как просмотренное
+                    </button>
+                    
+                </div>
+                
+                <div class="video-list-sidebar">
+                    <h3 class="video-list-title">Список видео</h3>
+                    
+                    <div class="video-list" id="videoList">
+                        <!-- Видео 1 -->
+                        <a href="#" class="video-item active" data-video-id="1" data-video-src="image/primer.mp4"data-sort-order="1">
+                            <div class="video-icon">▶</div>
+                            <div class="video-content">
+                                <h4>1. Изучение планет Солнечной системы</h4>
+                                <p>Урок 1</p>
+                            </div>
+                        </a>
+                        
+                        <!-- Видео 2 -->
+                        <a href="#" class="video-item" data-video-id="2" data-video-src="image/primer.mp4" data-sort-order="2">
+                            <div class="video-icon">▶</div>
+                            <div class="video-content">
+                                <h4>2. Спутники планет</h4>
+                                <p>Урок 2</p>
+                            </div>
+                        </a>
+                        
+                        <!-- Видео 3 -->
+                        <a href="#" class="video-item" data-video-id="3" data-video-src="image/primer.mp4" data-sort-order="3">
+                            <div class="video-icon">▶</div>
+                            <div class="video-content">
+                                <h4>3. Формирование планетных систем</h4>
+                                <p>Урок 3</p>
+                            </div>
+                        </a>
+                        
+                        <!-- Видео 4 -->
+                        <a href="#" class="video-item" data-video-id="4" data-video-src="image/primer.mp4" data-sort-order="4">
+                            <div class="video-icon">▶</div>
+                            <div class="video-content">
+                                <h4>4. Поиск экзопланет</h4>
+                                <p>Урок 4</p>
+                            </div>
+                        </a>
+
+                        <!-- Видео 5 -->
+                        <a href="#" class="video-item" data-video-id="5" data-video-src="image/primer.mp4" data-sort-order="5">
+                            <div class="video-icon">▶</div>
+                            <div class="video-content">
+                                <h4>5. Условия для жизни</h4>
+                                <p>Урок 5</p>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="course-skills">
+                <h2 class="skills-title">Что вы получите после прохождения курса</h2>
+
+                <div class="skills-list">
+                    <div class="skill-item">
+                            <h4>Изучение планет Солнечной системы</h4>
+                            <p>Подробно изучите все планеты Солнечной системы, их строение, атмосферу и уникальные особенности каждой планеты.</p>
+                        </div>
+                        <div class="skill-item">
+                            <h4>Спутники планет</h4>
+                            <p>Познакомитесь с самыми интересными спутниками планет: Луна, Европа, Титан, Энцелад и другие загадочные миры.</p>
+                        </div>
+                        <div class="skill-item">
+                            <h4>Формирование планетных систем</h4>
+                            <p>Узнаете, как рождаются планеты из протопланетных дисков и какие процессы влияют на их формирование.</p>
+                        </div>
+                        <div class="skill-item">
+                            <h4>Поиск экзопланет</h4>
+                            <p>Научитесь методам обнаружения планет у других звезд: транзитный метод, метод лучевых скоростей и другие.</p>
+                        </div>
+                        <div class="skill-item">
+                            <h4>Условия для жизни</h4>
+                            <p>Разберетесь, какие условия необходимы для возникновения жизни и где в Солнечной системе они могут существовать.</p>
+                        </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-links">
+                    <a href="#">Обработка персональных данных</a>
+                </div>
+                <div class="footer-info">
+                    <p>+7 (000) 000-00-00 | astro@site.ru</p>
+                    <p>ИП Якунина Анастасия Александровна | ИНН 111 222 333 444</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Данные о видео
+        const videos = [
+            { id: 1, src: 'image/primer.mp4', title: 'Изучение планет Солнечной системы?', sortOrder: 1 },
+            { id: 2, src: 'image/primer.mp4', title: 'Спутники планет',sortOrder: 2 },
+            { id: 3, src: 'image/primer.mp4', title: 'Формирование планетных систем', sortOrder: 3 },
+            { id: 4, src: 'image/primer.mp4', title: 'Поиск экзопланет', sortOrder: 4 },
+            { id: 5, src: 'image/primer.mp4', title: 'Условия для жизни', sortOrder: 5 }
+        ];
+        
+        const totalVideos = videos.length;
+        let currentVideoId = 1;
+        let watchedVideos = [];
+        
+        // Ключ для localStorage
+        const STORAGE_KEY = 'astro_course_watched_' + window.location.pathname.split('/').pop().replace('.html', '');
+        
+        // Загрузка сохраненного прогресса
+        function loadProgress() {
+            const saved = localStorage.getItem(STORAGE_KEY);
+            if (saved) {
+                try {
+                    watchedVideos = JSON.parse(saved);
+                    if (!Array.isArray(watchedVideos)) watchedVideos = [];
+                } catch(e) {
+                    watchedVideos = [];
+                }
+            }
+            updateProgressUI();
+            updateWatchedIcons();
+        }
+        
+        // Сохранение прогресса
+        function saveProgress() {
+            localStorage.setItem(STORAGE_KEY, JSON.stringify(watchedVideos));
+        }
+        
+        // Обновление UI прогресса
+        function updateProgressUI() {
+            const completedCount = watchedVideos.length;
+            const progress = totalVideos > 0 ? Math.round((completedCount / totalVideos) * 100) : 0;
+            
+            const progressPercent = document.getElementById('progressPercent');
+            const progressFill = document.getElementById('progressFill');
+            const progressText = document.getElementById('progressText');
+            
+            if (progressPercent) progressPercent.textContent = progress + '%';
+            if (progressFill) progressFill.style.width = progress + '%';
+            if (progressText) {
+                progressText.textContent = `Просмотрено видео: ${completedCount} из ${totalVideos}`;
+            }
+        }
+        
+        // Обновление иконок просмотренных видео в списке
+        function updateWatchedIcons() {
+            document.querySelectorAll('.video-item').forEach(item => {
+                const videoId = parseInt(item.getAttribute('data-video-id'));
+                const icon = item.querySelector('.video-icon');
+                
+                if (watchedVideos.includes(videoId)) {
+                    item.classList.add('watched');
+                    if (icon) icon.textContent = '✓';
+                } else {
+                    item.classList.remove('watched');
+                    if (icon) icon.textContent = '▶';
+                }
+            });
+            
+            // Обновляем состояние кнопки для текущего видео
+            updateMarkButtonState();
+        }
+        
+        // Обновление состояния кнопки "Отметить как просмотренное"
+        function updateMarkButtonState() {
+            const markBtn = document.getElementById('markWatchedBtn');
+            if (!markBtn) return;
+            
+            if (watchedVideos.includes(currentVideoId)) {
+                markBtn.disabled = true;
+                markBtn.textContent = '✓ Видео просмотрено';
+            } else {
+                markBtn.disabled = false;
+                markBtn.textContent = 'Отметить как просмотренное';
+            }
+        }
+        
+        // Отметка видео как просмотренного
+        function markVideoAsWatched(videoId, isAuto = false) {
+            if (watchedVideos.includes(videoId)) {
+                if (!isAuto) {
+                    showAlert('Это видео уже отмечено как просмотренное', 'success');
+                }
+                return;
+            }
+            
+            watchedVideos.push(videoId);
+            saveProgress();
+            updateProgressUI();
+            updateWatchedIcons();
+            
+            showAlert(isAuto ? 'Видео отмечено как просмотренное автоматически!' : 'Видео отмечено как просмотренное!', 'success');
+        }
+        
+        // Переключение видео
+        function switchVideo(videoId) {
+            const video = videos.find(v => v.id === videoId);
+            if (!video) return;
+            
+            currentVideoId = videoId;
+            
+            // Обновляем видеоплеер
+            const videoPlayer = document.getElementById('mainVideoPlayer');
+            const videoSource = document.getElementById('videoSource');
+            
+            if (videoSource && videoPlayer) {
+                // Сохраняем текущее время перед сменой видео
+                videoPlayer.pause();
+                videoSource.src = video.src;
+                videoPlayer.load();
+                
+                // Сбрасываем флаг автоотметки для нового видео
+                if (window._videoWatchedFlag) {
+                    window._videoWatchedFlag = false;
+                }
+            }
+            
+            // Обновляем информацию о текущем видео
+            const currentTitle = document.getElementById('currentVideoTitle');
+            const currentDesc = document.getElementById('currentVideoDesc');
+            if (currentTitle) currentTitle.textContent = `${video.sortOrder}. ${video.title}`;
+            if (currentDesc) currentDesc.textContent = video.desc;
+            
+            // Обновляем активный класс в списке
+            document.querySelectorAll('.video-item').forEach(item => {
+                const id = parseInt(item.getAttribute('data-video-id'));
+                if (id === videoId) {
+                    item.classList.add('active');
+                } else {
+                    item.classList.remove('active');
+                }
+            });
+            
+            // Обновляем состояние кнопки
+            updateMarkButtonState();
+            
+            // Прокручиваем к активному видео
+            const activeItem = document.querySelector('.video-item.active');
+            if (activeItem) {
+                setTimeout(() => {
+                    activeItem.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }, 100);
+            }
+        }
+        
+        // Показать уведомление
+        function showAlert(message, type) {
+            const alertMessage = document.getElementById('alertMessage');
+            if (!alertMessage) return;
+            
+            alertMessage.textContent = message;
+            alertMessage.className = 'alert';
+            alertMessage.classList.add(type === 'success' ? 'alert-success' : 'alert-error');
+            alertMessage.style.display = 'block';
+            
+            setTimeout(() => {
+                alertMessage.style.display = 'none';
+            }, 5000);
+        }
+        
+        // Инициализация при загрузке страницы
+        document.addEventListener('DOMContentLoaded', function() {
+            // Загружаем прогресс
+            loadProgress();
+            
+            // Анимация прогресс-бара
+            const progressFill = document.getElementById('progressFill');
+            if (progressFill) {
+                const width = progressFill.style.width;
+                progressFill.style.width = '0%';
+                setTimeout(() => {
+                    progressFill.style.width = width;
+                }, 100);
+            }
+            
+            // Обработчики для переключения видео
+            document.querySelectorAll('.video-item').forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const videoId = parseInt(this.getAttribute('data-video-id'));
+                    if (!isNaN(videoId)) {
+                        switchVideo(videoId);
+                    }
+                });
+            });
+            
+            // Обработчик кнопки "Отметить как просмотренное"
+            const markBtn = document.getElementById('markWatchedBtn');
+            if (markBtn) {
+                markBtn.addEventListener('click', function() {
+                    if (!watchedVideos.includes(currentVideoId)) {
+                        markVideoAsWatched(currentVideoId, false);
+                    }
+                });
+            }
+            
+            // Отслеживание просмотра видео
+            const videoPlayer = document.getElementById('mainVideoPlayer');
+            if (videoPlayer) {
+                let videoWatchedFlag = false;
+                window._videoWatchedFlag = videoWatchedFlag;
+                
+                videoPlayer.addEventListener('timeupdate', function() {
+                    if (videoPlayer.duration > 0 && !window._videoWatchedFlag) {
+                        const progress = (videoPlayer.currentTime / videoPlayer.duration) * 100;
+                        
+                        if (progress >= 90 && !watchedVideos.includes(currentVideoId)) {
+                            window._videoWatchedFlag = true;
+                            markVideoAsWatched(currentVideoId, true);
+                        }
+                    }
+                });
+                
+                videoPlayer.addEventListener('ended', function() {
+                    if (!window._videoWatchedFlag && !watchedVideos.includes(currentVideoId)) {
+                        window._videoWatchedFlag = true;
+                        markVideoAsWatched(currentVideoId, true);
+                    }
+                });
+            }
+            
+            // Автопрокрутка к активному видео
+            const activeItem = document.querySelector('.video-item.active');
+            if (activeItem) {
+                setTimeout(() => {
+                    activeItem.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }, 500);
+            }
+        });
+    </script>
+</body>
+</html>

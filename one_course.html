@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Планеты и их спутники</title>
+    <style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Arial, sans-serif;
+}
+
+body {
+    background-color: #ffffff;
+    color: #000000;
+    line-height: 1.5;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.header {
+    height: auto;
+    min-height: 96px;
+}
+
+.header-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    padding: 10px 0;
+}
+
+.logo img {
+    width: 120px;
+    height: auto;
+    margin-left: 10px;
+    margin-top: 5px;
+}
+
+.title-header {
+    font-size: 12px;
+    max-width: 200px;
+    height: auto;
+    text-align: center;
+    margin-right: 10px;
+    margin-top: 5px;
+}
+
+hr {
+    border: none;
+    background-color: rgb(0, 0, 0);
+    color: rgb(0, 0, 0); 
+    height: 1.5px;
+    margin: 10px 0;
+}
+
+nav {
+    display: flex;
+    justify-content: center;
+    padding: 10px 0;
+}
+
+.nav-links {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+}
+
+.nav-links a {
+    font-size: 14px;
+    color: #000000;
+    text-decoration: none;
+    padding: 5px 10px;
+    transition: color 0.3s ease;
+    outline: none;
+}
+
+.nav-links a:focus {
+    outline: none;
+}
+
+.nav-links a.active {
+    color: #201767;
+    font-weight: 600;
+}
+
+.nav-links a:active {
+    outline: none;
+    border: none;
+}
+
+.nav-links a:focus-visible {
+    outline: 2px solid #9D86CA;
+    outline-offset: 2px;
+}
+
+.course-detail-section {
+    padding: 40px 0 60px;
+    margin-top: 40px;
+}
+
+.back-link {
+    display: inline-block;
+    margin-bottom: 30px;
+    color: #201767; 
+    text-decoration: none;
+    font-size: 16px;
+    transition: color 0.3s;
+}
+
+.back-link:hover {
+    color: #655bb6;
+}
+
+.course-detail-container {
+    background-color: white;
+    border-radius: 15px;
+    overflow: hidden;
+}
+
+.course-hero {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    padding: 40px;
+}
+
+.course-image-large {
+    border-radius: 10px;
+    position: relative;
+}
+
+.course-image-large img {
+    width: 100%;
+    height: 350px;
+    object-fit: cover;
+    display: block;
+    border-radius: 12px;
+    position: relative;
+    z-index: 2;
+}
+
+
+.course-image-large::after {
+    content: '';
+    position: absolute;
+    top: 25px; 
+    left: -25px; 
+    width: 100%;
+    height: 100%;
+    background: #9D86CA; 
+    z-index: 1;
+    border-radius: 12px;
+}
+
+
+
+.course-info {
+    padding: 10px 0;
+}
+
+.course-title-large {
+    font-size: 32px;
+    color: #000000;
+    margin-bottom: 20px;
+    line-height: 1.2;
+}
+
+.course-description {
+    font-size: 16px;
+    line-height: 1.6;
+    color: #000000;
+    margin-bottom: 30px;
+}
+
+.course-price {
+    font-size: 28px;
+    color: #000000;
+    font-weight: 600;
+    margin-bottom: 30px;
+}
+
+.buy-btn {
+    display: inline-block;
+    background: #FABA8A;
+    color: white;
+    padding: 16px 40px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 18px;
+    transition: all 0.3s;
+    border: none;
+    cursor: pointer;
+}
+
+.buy-btn:hover {
+    background: #f7984f;
+    transform: translateY(-7px);
+}
+
+.course-skills {
+    padding: 40px;
+    margin-top: 20px;
+}
+
+.skills-title {
+    font-size: 24px;
+    color: #000000;
+    margin-bottom: 25px;
+    text-align: center;
+}
+
+.skills-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+.skill-item {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    border: 3px solid #F68E8F;
+    transition: transform 0.3s ease;
+}
+
+    .skill-item:hover {
+        transform: translateY(-7px);
+
+    }
+
+.skill-item h4 {
+    color: #000000;
+    margin-bottom: 10px;
+    font-size: 18px;
+}
+
+.skill-item p {
+    color: #000000;
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+footer {
+    background-color: #000000;
+    color: white;
+    padding: 40px 0;
+    margin-top: 100px;
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.footer-links a {
+    color: white;
+    text-decoration: none;
+    margin-right: 10px;
+    transition: color 0.3s;
+    font-size: 14px;
+    display: inline-block;
+    margin-bottom: 5px;
+}
+
+.footer-links a:hover {
+    color: #ffffff;
+}
+
+.footer-info {
+    text-align: right;
+    font-size: 13px;
+}
+
+.footer-info p {
+    margin-bottom: 5px;
+}
+
+@media (max-width: 992px) {
+    .course-hero {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+    
+    .course-image-large img {
+        height: 300px;
+    }
+}
+
+@media (max-width: 768px) {
+    .header-top {
+        flex-direction: column;
+        text-align: center;
+        gap: 10px;
+    }
+    
+    .logo img {
+        margin: 0 auto;
+        float: none;
+        width: 140px;
+    }
+    
+    .title-header {
+        float: none;
+        margin: 0 auto;
+        max-width: 100%;
+        font-size: 11px;
+    }
+    
+    .nav-links {
+        flex-direction: column;
+        gap: 10px;
+        width: 100%;
+    }
+    
+    .nav-links a {
+        margin: 0;
+        padding: 8px;
+        text-align: center;
+        border: none;
+        border-radius: 0;
+        background-color: transparent;
+        min-height: 44px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    .course-detail-section {
+        padding: 30px 0 40px;
+    }
+    
+    .course-hero {
+        padding: 25px;
+    }
+    
+    .course-title-large {
+        font-size: 26px;
+    }
+    
+    .course-price {
+        font-size: 24px;
+    }
+    
+    .buy-btn {
+        padding: 14px 30px;
+        font-size: 16px;
+        width: 100%;
+        text-align: center;
+    }
+    
+    .course-skills {
+        padding: 30px;
+    }
+    
+    .skills-title {
+        font-size: 22px;
+    }
+    footer{
+        margin-top: 20px;
+    }
+
+    .footer-content {
+        flex-direction: column;
+        text-align: center;
+        gap: 10px;
+    }
+    
+    .footer-info {
+        text-align: center;
+        margin-top: 10px;
+    }
+    
+    .footer-links {
+        text-align: center;
+    }
+    
+    .footer-links a {
+        margin: 0 5px;
+    }
+}
+
+@media (max-width: 480px) {
+    .header {
+        padding: 5px 0;
+    }
+    
+    .logo img {
+        width: 100px;
+    }
+    
+    .title-header {
+        font-size: 10px;
+    }
+    
+    .container {
+        padding: 0 15px;
+    }
+    
+    .course-hero {
+        padding: 20px;
+    }
+    
+    .course-title-large {
+        font-size: 22px;
+    }
+    
+    .course-description {
+        font-size: 15px;
+    }
+    
+    .course-price {
+        font-size: 22px;
+    }
+    
+    .course-skills {
+        padding: 20px;
+    }
+    
+    .skills-title {
+        font-size: 20px;
+    }
+    
+    .skill-item {
+        padding: 15px;
+    }
+    
+    .skills-list {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (hover: none) and (pointer: coarse) {
+    .nav-links a {
+        min-height: 44px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    .buy-btn {
+        min-height: 44px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+}
+
+
+.buy-btn:focus {
+    outline: 2px solid #9D86CA;
+    outline-offset: 2px;
+}
+
+.nav-links a:focus {
+    outline: none; 
+}
+
+.nav-links a:focus-visible {
+    outline: 2px solid #9D86CA;
+    outline-offset: 2px;
+}
+
+.back-link:focus {
+    outline: 2px solid #9D86CA;
+    outline-offset: 2px;
+}
+    </style>
+</head>
+<body>
+    
+    <header class="header">
+        <div class="header-top">
+            <div class="logo"><a href="index.html"><img src="image/logo.png" alt="logo"></a></div>
+            <div class="title-header">Познавай Вселенную — твой путь к звёздам начинается здесь</div>
+        </div>
+        <hr>
+        
+                <nav><div class="nav-links">
+                <a href="index.html">Главная</a>
+                <a href="courses.html">Курсы</a>
+                <a href="calendar.html">Календарь событий</a>
+                <a href="cabinet.html">Личный кабинет</a>
+            </div></nav>
+    </header>
+
+    <section class="course-detail-section">
+        <div class="container">
+            <a href="courses.html" class="back-link">← Назад к списку курсов</a>
+            
+            <div class="course-detail-container">
+                <div class="course-hero">
+                    <div class="course-image-large">
+                        <img src="image/planeti.jpg" alt="Планеты и их спутники">
+                    </div>
+                    
+                    <div class="course-info">
+                        
+                        <h1 class="course-title-large">Планеты и их спутники</h1>
+                        <div class="course-description">
+                            Изучаем особенности планет, их состав, атмосферу и спутники, включая земные и газовые гиганты.
+                        </div>
+                        
+                        <div class="course-price">890 ₽</div>
+                        
+                        <form action="payment.html" method="POST">
+                            <input type="hidden" name="course_id">
+                            <button type="submit" class="buy-btn">Купить курс</button>
+                        </form>
+                    </div>
+                </div>
+                
+                <div class="course-skills">
+                    <h2 class="skills-title">Что вы получите после прохождения курса</h2>
+    
+                    <div class="skills-list">
+
+                        <div class="skill-item">
+                            <h4>Изучение планет Солнечной системы</h4>
+                            <p>Подробно изучите все планеты Солнечной системы, их строение, атмосферу и уникальные особенности каждой планеты.</p>
+                        </div>
+                        <div class="skill-item">
+                            <h4>Спутники планет</h4>
+                            <p>Познакомитесь с самыми интересными спутниками планет: Луна, Европа, Титан, Энцелад и другие загадочные миры.</p>
+                        </div>
+                        <div class="skill-item">
+                            <h4>Формирование планетных систем</h4>
+                            <p>Узнаете, как рождаются планеты из протопланетных дисков и какие процессы влияют на их формирование.</p>
+                        </div>
+                        <div class="skill-item">
+                            <h4>Поиск экзопланет</h4>
+                            <p>Научитесь методам обнаружения планет у других звезд: транзитный метод, метод лучевых скоростей и другие.</p>
+                        </div>
+                        <div class="skill-item">
+                            <h4>Условия для жизни</h4>
+                            <p>Разберетесь, какие условия необходимы для возникновения жизни и где в Солнечной системе они могут существовать.</p>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-links">
+                    <a href="#">Обработка персональных данных</a>
+                </div>
+                <div class="footer-info">
+                    <p>+7 (000) 000-00-00 | astro@site.ru</p>
+                    <p>ИП Якунина Анастасия Александровна | ИНН 111 222 333 444</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

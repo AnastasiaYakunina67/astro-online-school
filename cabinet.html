@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Личный кабинет</title>
+
+    <style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Arial, sans-serif;
+}
+
+body {
+    background-color: #ffffff;
+    color: #000000;
+    line-height: 1.5;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.header {
+    height: auto;
+    min-height: 96px;
+}
+
+.header-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    padding: 10px 0;
+}
+
+.logo img {
+    width: 120px;
+    height: auto;
+    margin-left: 10px;
+    margin-top: 5px;
+}
+
+.title-header {
+    font-size: 12px;
+    max-width: 200px;
+    height: auto;
+    text-align: center;
+    margin-right: 10px;
+    margin-top: 5px;
+}
+
+hr {
+    border: none;
+    background-color: rgb(0, 0, 0);
+    color: rgb(0, 0, 0); 
+    height: 1.5px;
+    margin: 10px 0;
+}
+
+nav {
+    display: flex;
+    justify-content: center;
+    padding: 10px 0;
+}
+
+.nav-links {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+}
+
+.nav-links a {
+    font-size: 14px;
+    color: #000000;
+    text-decoration: none;
+    padding: 5px 10px;
+    transition: color 0.3s ease;
+    outline: none;
+}
+
+.nav-links a:focus {
+    outline: none;
+}
+
+.nav-links a.active {
+    color: #201767;
+    font-weight: 600;
+}
+
+.nav-links a:active {
+    outline: none;
+    border: none;
+}
+
+.nav-links a:focus-visible {
+    outline: 2px solid #9D86CA;
+    outline-offset: 2px;
+}
+
+
+.main-content {
+    display: flex;
+    margin: 60px 0;
+    gap: 30px;
+    flex-direction: row;
+}
+
+.profile-section {
+    flex: 1;
+    background-color: #ffffff;
+    border-radius: 16px;
+    padding: 28px;
+    border: 3px solid #43A491;
+}
+
+.profile-header {
+    margin-bottom: 20px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid #e0e4e8;
+}
+
+.profile-header h2 {
+    font-size: 22px;
+    font-weight: 600;
+    color: #000000;
+    letter-spacing: -0.01em;
+}
+
+.profile-details {
+    margin-top: 16px;
+}
+
+.profile-detail {
+    margin-bottom: 14px;
+    display: flex;
+    align-items: center;
+    padding: 8px 0;
+    font-size: 15px;
+    color: #000000;
+    border-bottom: 1px dotted #e0e4e8;
+}
+
+.profile-detail:last-child {
+    border-bottom: none;
+}
+
+  .section-title {
+        font-size: 30px;
+        margin-bottom: 20px;
+        font-weight: 600;
+    }
+
+    .courses-section{
+        border: 3px solid;
+        border-radius: 16px;
+        padding: 20px;
+    }
+
+
+.course-card {
+    border-radius: 12px;
+    padding: 0;
+    margin-bottom: 20px;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    min-height: 200px; 
+    display: flex;
+    align-items: flex-end;
+    border: 1px solid #eaeef2;
+    transition: transform 0.2s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.course-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(to bottom, rgba(0,0,0,0.1), rgba(0,0,0,0.4));
+    z-index: 1;
+}
+
+.course-card:hover {
+    transform: translateY(-2px);
+}
+
+.course-card h3 {
+    margin-bottom: 8px;
+    color: #ffffff;
+    font-size: 18px;
+    font-weight: 600;
+    text-shadow: 0 1px 3px rgba(0,0,0,0.3);
+}
+
+.course-card p {
+    color: #ffffff;
+    font-size: 14px;
+    line-height: 1.5;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.3);
+}
+
+.text-oreal {
+    border-radius: 0 0 12px 12px;
+    padding: 20px;
+    background: transparent; 
+    width: 100%;
+    position: relative;
+    z-index: 2;
+    border-top: none;
+}
+
+.course-card .text-oreal a {
+    display: inline-block;
+    margin-top: 12px;
+    color: #ffffff;
+    font-weight: 600;
+    text-decoration: none;
+    font-size: 14px;
+    transition: all 0.2s;
+    border-bottom: 2px solid rgba(255,255,255,0.5);
+    padding-bottom: 2px;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.3);
+}
+
+.course-card .text-oreal a:hover {
+    color: #ffffff;
+    border-bottom-color: #6A5B9A;
+    padding-right: 10px;
+}
+
+.course-card.with-overlay .text-oreal {
+    background: linear-gradient(to top, rgba(32, 23, 103, 0.9), rgba(32, 23, 103, 0.7));
+    border-radius: 0 0 12px 12px;
+}
+
+.course-card.with-overlay h3,
+.course-card.with-overlay p,
+.course-card.with-overlay a {
+    color: #ffffff;
+    text-shadow: none;
+}
+
+.course-card.dark-overlay::before {
+    background: linear-gradient(to bottom, rgba(0,0,0,0.3), rgba(0,0,0,0.7));
+}
+
+@media (max-width: 768px) {
+    .course-card {
+        min-height: 180px;
+    }
+    
+    .text-oreal {
+        padding: 16px;
+    }
+}
+
+@media (max-width: 480px) {
+    .course-card {
+        min-height: 160px;
+    }
+    
+    .course-card h3 {
+        font-size: 16px;
+    }
+    
+    .course-card p {
+        font-size: 13px;
+    }
+}
+
+footer {
+    background-color: #000000;
+    color: white;
+    padding: 40px 0;
+    margin-top: 100px;
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.footer-links a {
+    color: white;
+    text-decoration: none;
+    margin-right: 20px;
+    transition: opacity 0.2s;
+    font-size: 14px;
+    opacity: 0.8;
+}
+
+.footer-links a:hover {
+    opacity: 1;
+}
+
+.footer-info {
+    text-align: right;
+    font-size: 13px;
+    opacity: 0.8;
+}
+
+.footer-info p {
+    margin-bottom: 5px;
+}
+
+@media (max-width: 1024px) {
+    .main-content {
+        gap: 25px;
+    }
+}
+
+@media (max-width: 768px) {
+    .header-top {
+        flex-direction: column;
+        text-align: center;
+        gap: 10px;
+    }
+    
+    .logo img {
+        margin: 0 auto;
+        width: 140px;
+    }
+    
+    .title-header {
+        margin: 0 auto;
+        max-width: 100%;
+        font-size: 11px;
+    }
+    
+    .nav-links {
+        flex-direction: column;
+        gap: 10px;
+        width: 100%;
+    }
+    
+    .nav-links a {
+        margin: 0;
+        padding: 8px;
+        text-align: center;
+        border: none;
+        background-color: transparent;
+        min-height: 44px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    .main-content {
+        flex-direction: column;
+        margin: 40px 0;
+        gap: 20px;
+    }
+    
+    .profile-section, .courses-section {
+        padding: 20px;
+    }
+    
+    .profile-header h2 {
+        font-size: 20px;
+    }
+    
+    .section-title {
+        font-size: 20px;
+    }
+    
+    
+    .footer-content {
+        flex-direction: column;
+        text-align: center;
+        gap: 15px;
+    }
+    
+    .footer-info {
+        text-align: center;
+    }
+    
+    .footer-links a {
+        margin: 0 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    .header {
+        padding: 5px 0;
+    }
+    
+    .logo img {
+        width: 100px;
+    }
+    
+    .title-header {
+        font-size: 10px;
+    }
+    
+    .container {
+        padding: 0 15px;
+    }
+    
+    .nav-links a {
+        font-size: 13px;
+        padding: 8px;
+    }
+    
+    .main-content {
+        margin: 20px 0;
+        gap: 15px;
+    }
+    
+    .profile-section, .courses-section {
+        padding: 16px;
+    }
+    
+    .profile-header h2 {
+        font-size: 18px;
+    }
+    
+    .profile-detail {
+        font-size: 14px;
+        padding: 6px 0;
+    }
+    
+    .section-title {
+        font-size: 18px;
+        margin-bottom: 20px;
+    }
+
+    
+    footer {
+        padding: 25px 0;
+        margin-top: 40px;
+    }
+    
+    .footer-info {
+        font-size: 11px;
+    }
+    
+    .footer-links a {
+        font-size: 12px;
+        margin: 0 5px;
+    }
+}
+
+@media (max-width: 360px) {
+    .title-header {
+        font-size: 9px;
+    }
+    
+    .nav-links a {
+        font-size: 12px;
+        padding: 6px;
+    }
+    
+    .profile-header h2 {
+        font-size: 16px;
+    }
+    
+    .section-title {
+        font-size: 16px;
+    }
+}
+
+@media (hover: none) and (pointer: coarse) {
+    .nav-links a {
+        min-height: 44px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    .course-card {
+        min-height: 120px;
+    }
+    
+    .course-card:hover {
+        transform: none;
+    }
+}
+
+.course-card .text-oreal {
+    backdrop-filter: blur(4px);
+}
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="header-top">
+            <div class="logo"><a href="index.html"><img src="image/logo.png" alt="logo"></a></div>
+            <div class="title-header">Познавай Вселенную — твой путь к звёздам начинается здесь</div>
+        </div>
+        <hr>
+
+        <nav>
+            <div class="nav-links">
+                <a href="index.html">Главная</a>
+                <a href="courses.html">Курсы</a>
+                <a href="calendar.html">Календарь событий</a>
+                <a href="index.html">Выход</a>
+            </div>
+        </nav>
+    </header>
+    
+    <div class="container">
+        <div class="main-content">
+            <section class="profile-section">
+                <div class="profile-header">
+                    <h2>Демо Пользователь</h2>
+                </div>
+                <div class="profile-details">
+                    <div class="profile-detail">
+                        <svg class="profile-icon" viewBox="0 0 24 24" width="18" height="18" style="margin-right: 5px;">
+                            <path fill="currentColor" d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+                        </svg>
+                        <span>astronaut_dem00000</span>
+                    </div>
+                    <div class="profile-detail">
+                        <svg class="profile-icon" viewBox="0 0 24 24" width="18" height="18" style="margin-right: 5px;">
+                            <path fill="currentColor" d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+                        </svg>
+                        <span>demo@astro.ru</span>
+                    </div>
+                    <div class="profile-detail">
+                        <svg class="profile-icon" viewBox="0 0 24 24" width="18" height="18" style="margin-right: 5px;">
+                            <path fill="currentColor" d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/>
+                        </svg> 
+                        <span>+7 (999) 123-45-67</span>
+                    </div>
+                </div>
+            </section>
+            
+            <section class="courses-section" style="border-color: #FABA8A;">
+                <h2 class="section-title">Мои курсы</h2>
+                
+                <div class="course-card" style="background-image: url('image/missii.jpg'); background-size: cover; background-position: center;">
+                    <div class="text-oreal">
+                        <h3>Космические мисссии</h3>
+                        <p>Рассказ о ключевых миссиях, от первых спутников до современных марсоходов и телескопов.</p>
+                        <a href="my_course.html" style="display: inline-block; margin-top: 10px; color: #ffffff; font-weight: 500; border-bottom: 2px solid #ffffff;">
+                            Перейти к курсу
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="course-card" style="background-image: url('image/planeti.jpg'); background-size: cover; background-position: center;">
+                    <div class="text-oreal">
+                        <h3>Планеты и их спутники</h3>
+                        <p>Изучаем особенности планет, их состав, атмосферу и спутники, включая земные и газовые гиганты.</p>
+                        <a href="my_course.html" style="display: inline-block; margin-top: 10px; color: #ffffff; font-weight: 500; border-bottom: 2px solid #ffffff;">
+                            Перейти к курсу
+                        </a>
+                    </div>
+                </div>
+            </section>
+            
+            <section class="courses-section" style="border-color: #F68E8F;">
+                <h2 class="section-title">Ждут доступ</h2>
+                
+                <div class="course-card" style="background-image: url('image/zvezdi.jpg'); background-size: cover; background-position: center;">
+                    <div class="text-oreal">
+                        <h3>Звезды и их эволюция</h3>
+                        <p>Погружаемся в жизнь звезд, от их рождения в туманностях до превращения в белые карлики, нейтронные звезды и черные дыры.</p>
+                        <a href='one_course.html' style="display: inline-block; margin-top: 10px; color: #ffffff; font-weight: 500; border-bottom: 2px solid #ffffff;">
+                            Подробнее о курсе
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="course-card" style="background-image: url('image/observat.jpg'); background-size: cover; background-position: center;">
+                    <div class="text-oreal">
+                        <h3>Домашняя обсерватория</h3>
+                        <p>Обзор современных и исторических инструментов для наблюдения космоса, как научиться пользоваться телескопом.</p>
+                        <a href='one_course.html' style="display: inline-block; margin-top: 10px; color: #ffffff; font-weight: 500; border-bottom: 2px solid #ffffff;">
+                            Подробнее о курсе
+                        </a>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+    
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-links">
+                    <a href="#">Обработка персональных данных</a>
+                </div>
+                <div class="footer-info">
+                    <p>+7 (000) 000-00-00 | astro@site.ru</p>
+                    <p>ИП Якунина Анастасия Александровна | ИНН 111 222 333 444</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

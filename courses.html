@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Наши курсы</title>
+    <style>* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Arial, sans-serif;
+}
+
+body {
+    background-color: #ffffff;
+    color: #333;
+    line-height: 1.5;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.header {
+    height: auto;
+    min-height: 96px;
+}
+
+.header-top{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    padding: 10px 0;
+}
+
+.logo img{
+    width: 120px;
+    height: auto;
+    margin-left: 10px;
+    margin-top: 5px;
+}
+.title-header{
+    font-size: 12px;
+    max-width: 200px;
+    height: auto;
+    text-align: center;
+    margin-right: 10px;
+    margin-top: 5px;
+}
+
+hr {
+    border: none;
+    background-color: rgb(0, 0, 0);
+    color: rgb(0, 0, 0); 
+    height: 1.5px;
+    margin: 10px 0;
+}
+
+nav{
+    display: flex;
+    justify-content: center;
+    padding: 10px 0;
+}
+
+.nav-links{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+}
+
+.nav-links a{
+    font-size: 14px;
+    color: #000000;
+    text-decoration: none;
+    padding: 5px 10px;
+    transition: color 0.3s ease;
+    outline: none;
+}
+
+.nav-links a:focus {
+    outline: none;
+}
+
+.nav-links a.active {
+    color: #201767;
+    font-weight: 600;
+}
+.nav-links a:active {
+    outline: none;
+    border: none;
+}
+
+.nav-links a:focus-visible {
+    outline: 2px solid #9D86CA;
+    outline-offset: 2px;
+}
+
+    .courses-section1 {
+        padding: 0 0;
+    }
+
+    .section-title1 {
+        font-size: 40px;
+        margin-top: 80px;
+        margin-bottom: 50px;
+        color: #000000;
+        text-align: center;
+        font-weight: 500;
+    }
+
+    .section-title1 a {
+        text-decoration: none;
+        color: #000;
+        position: relative;
+        padding-bottom: 5px;
+    }
+
+
+
+    .courses-grid1 {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 30px;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+    }
+
+    .course-card1 {
+        background: white;
+        border-radius: 20px;
+        overflow: hidden;
+        transition: all 0.3s ease;
+        border: 2px solid transparent;
+    }
+
+    .course-card1:hover {
+        transform: translateY(-10px);
+        border-color: #9D86CA; 
+    }
+
+    .course-image1 {
+        height: 200px;
+        overflow: hidden;
+    }
+
+    .course-image1 img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.5s ease;
+    }
+
+    .course-card1:hover .course-image img {
+        transform: scale(1.05);
+    }
+
+    .course-content1 {
+        padding: 25px;
+    }
+
+    .course-title1 {
+        font-size: 20px;
+        margin-bottom: 15px;
+        font-weight: 600;
+        color: #000;
+    }
+
+    .course-btn1 {
+        display: inline-block;
+        background: transparent;
+        color: #9D86CA;
+        padding: 10px 0;
+        text-decoration: none;
+        font-weight: 500;
+        font-size: 15px;
+        border-bottom: 2px solid #9D86CA;
+        transition: all 0.3s ease;
+    }
+
+    .course-btn1:hover {
+        color: #6A5B9A;
+        border-bottom-color: #6A5B9A;
+        padding-right: 10px;
+    }
+
+    .all-courses1 {
+        text-align: center;
+        margin-top: 50px;
+        transition: transform 0.3s ease;
+    }
+
+    .all-courses1 .course-btn1 {
+        padding: 12px 30px;
+        border: 2px solid #9D86CA;
+        border-radius: 30px;
+        background: transparent;
+    }
+
+    .all-courses1 .course-btn1:hover {
+        background: #9D86CA;
+        color: white;
+        padding-right: 30px;
+    }
+
+footer {
+    background-color: #000000;
+    color: white;
+    padding: 40px 0;
+    margin-top: 100px;
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.footer-links a {
+    color: white;
+    text-decoration: none;
+    margin-right: 10px;
+    transition: color 0.3s;
+    font-size: 14px;
+    display: inline-block;
+    margin-bottom: 5px;
+}
+
+.footer-links a:hover {
+    color: #ffffff;
+}
+
+.footer-info {
+    text-align: right;
+    font-size: 13px;
+}
+
+.footer-info p {
+    margin-bottom: 5px;
+}
+
+@media (max-width: 1024px) {
+    .courses-grid1 {
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 20px;
+    }
+    
+    .section-title1 {
+        font-size: 28px;
+    }
+}
+
+@media (max-width: 768px) {
+    .header-top {
+        flex-direction: column;
+        text-align: center;
+        gap: 10px;
+    }
+    
+    .logo img {
+        margin: 0 auto;
+        float: none;
+        width: 140px;
+    }
+    
+    .title-header {
+        float: none;
+        margin: 0 auto;
+        max-width: 100%;
+        font-size: 11px;
+    }
+    
+    .nav-links {
+        flex-direction: column;
+        gap: 10px;
+        width: 100%;
+    }
+    
+    .nav-links a {
+        margin: 0;
+        padding: 8px;
+        text-align: center;
+        border: none;
+        border-radius: 0;
+        background-color: transparent;
+    }
+    
+    .courses-section1 {
+        padding: 20px 0;
+    }
+    
+    .section-title1 {
+        font-size: 24px;
+        margin-bottom: 25px;
+    }
+    
+    .courses-grid1 {
+        grid-template-columns: 1fr;
+        gap: 20px;
+        margin-bottom: 40px;
+        padding: 0 10px;
+    }
+    
+    .course-card1 {
+        margin: 0 auto;
+        max-width: 400px;
+        width: 100%;
+    }
+    
+    .course-image1 {
+        height: 180px;
+    }
+    
+    .course-content1 {
+        padding: 15px;
+    }
+    
+    .course-title1 {
+        font-size: 18px;
+        margin-bottom: 12px;
+    }
+    
+    .course-btn1 {
+        padding: 10px 20px;
+        font-size: 15px;
+    }
+
+    footer{
+        margin-top: 50px;
+    }
+    
+    .footer-content {
+        flex-direction: column;
+        text-align: center;
+        gap: 10px;
+    }
+    
+    .footer-info {
+        text-align: center;
+        margin-top: 10px;
+    }
+    
+    .footer-links {
+        text-align: center;
+    }
+    
+    .footer-links a {
+        margin: 0 5px;
+    }
+}
+
+@media (max-width: 480px) {
+    .container {
+        padding: 0 15px;
+    }
+    
+    .header {
+        padding: 5px 0;
+    }
+    
+    .logo img {
+        width: 100px;
+    }
+    
+    .title-header {
+        font-size: 10px;
+    }
+
+    
+    .courses-section1 {
+        padding: 15px 0;
+    }
+    
+    .section-title1 {
+        font-size: 22px;
+        margin-bottom: 20px;
+    }
+    
+    .courses-grid1 {
+        gap: 15px;
+        margin-bottom: 30px;
+        padding: 0 5px;
+    }
+    
+    .course-card1 {
+        border-width: 3px;
+        border-radius: 10px;
+    }
+    
+    .course-image1 {
+        height: 160px;
+    }
+    
+    .course-content {
+        padding: 12px;
+    }
+    
+    .course-title1 {
+        font-size: 16px;
+        margin-bottom: 10px;
+    }
+    
+    .course-btn1 {
+        padding: 10px 15px;
+        font-size: 14px;
+    }
+    
+    footer {
+        padding: 20px 0;
+        margin-top: 20px;
+    }
+    
+    .footer-info {
+        font-size: 11px;
+    }
+    
+    .footer-links a {
+        font-size: 12px;
+        margin: 0 3px;
+    }
+}
+
+
+@media (hover: none) and (pointer: coarse) {
+    .nav-links a {
+        min-height: 44px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    .course-btn1 {
+        min-height: 44px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    .course-card1:hover {
+        transform: none;
+    }
+    
+    .course-btn1:hover {
+        transform: none;
+    }
+}
+</style>
+</head>
+<body>
+
+    <header class="header">
+        <div class="header-top"><div class="logo"><a href="index.html"><img src="image/logo.png" alt="logo"></a></div>
+        <div class="title-header">Познавай Вселенную — твой путь к звёздам начинается здесь</div></div><hr>
+
+        <nav><div class="nav-links">
+                <a href="index.html">Главная</a>
+                <a href="courses.html" style="color: #201767;font-weight: 600;">Курсы</a>
+                <a href="calendar.html">Календарь событий</a>
+                <a href="cabinet.html">Личный кабинет</a>
+            </div></nav>
+    </header>
+
+    <section class="courses-section1">
+        <div class="container1">
+            <h2 class="section-title1"><a href="courses.php">Курсы</a></h2>
+            
+            <div class="courses-grid1" method="POST">
+              
+                <div class='course-card1'>
+                    <div class='course-image1 course'><img src="image/planeti.jpg" alt='Обложка курса'></div>
+                    <div class='course-content1'>
+                        <h3 class='course-title1'>Планеты и их спутники</h3>
+                        <a href='one_course.html' class='course-btn1'>Подробнее о курсе</a>
+                    </div>
+                </div>  
+                <div class='course-card1'>
+                    <div class='course-image1 course'><img src="image/zvezdi.jpg" alt='Обложка курса'></div>
+                    <div class='course-content1'>
+                        <h3 class='course-title1'>Звезды и их эволюция</h3>
+                        <a href='one_course.html' class='course-btn1'>Подробнее о курсе</a>
+                    </div>
+                </div> 
+                <div class='course-card1'>
+                    <div class='course-image1 course'><img src="image/vvedenie.jpg" alt='Обложка курса'></div>
+                    <div class='course-content1'>
+                        <h3 class='course-title1'>Введение в астрономию</h3>
+                        <a href='one_course.html' class='course-btn1'>Подробнее о курсе</a>
+                    </div>
+                </div> 
+                <div class='course-card1'>
+                    <div class='course-image1 course'><img src="image/observat.jpg" alt='Обложка курса'></div>
+                    <div class='course-content1'>
+                        <h3 class='course-title1'>Домашняя обсерватория</h3>
+                        <a href='one_course.html' class='course-btn1'>Подробнее о курсе</a>
+                    </div>
+                </div> 
+                <div class='course-card1'>
+                    <div class='course-image1 course'><img src="image/missii.jpg" alt='Обложка курса'></div>
+                    <div class='course-content1'>
+                        <h3 class='course-title1'>Космические мисссии</h3>
+                        <a href='one_course.html' class='course-btn1'>Подробнее о курсе</a>
+                    </div>
+                </div> 
+                <div class='course-card1'>
+                    <div class='course-image1 course'><img src="image/black2_hole.jpg" alt='Обложка курса'></div>
+                    <div class='course-content1'>
+                        <h3 class='course-title1'>Черные дыры</h3>
+                        <a href='one_course.html' class='course-btn1'>Подробнее о курсе</a>
+                    </div>
+                </div> 
+                
+                
+            </div>
+        </div>
+    </section>
+
+
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-links">
+                    <a href="#">Обработка персональных данных</a>
+                </div>
+                <div class="footer-info">
+                    <p>+7 (000) 000-00-00 | astro@site.ru</p>
+                    <p>ИП Якунина Анастасия Александровна | ИНН 111 222 333 444</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

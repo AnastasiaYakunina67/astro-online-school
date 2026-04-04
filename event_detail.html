@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Голубое микролуние</title>
+    <style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Arial, sans-serif;
+}
+
+body {
+    background-color: #ffffff;
+    color: #333;
+    line-height: 1.5;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.header {
+    height: auto;
+    min-height: 96px;
+}
+
+.header-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    padding: 10px 0;
+}
+
+.logo img {
+    width: 120px;
+    height: auto;
+    margin-left: 10px;
+    margin-top: 5px;
+}
+
+.title-header {
+    font-size: 12px;
+    max-width: 200px;
+    text-align: center;
+    margin-right: 10px;
+    margin-top: 5px;
+}
+
+hr {
+    border: none;
+    background-color: rgb(0, 0, 0);
+    height: 1.5px;
+    margin: 10px 0;
+}
+
+nav {
+    display: flex;
+    justify-content: center;
+    padding: 10px 0;
+}
+
+.nav-links {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+}
+
+.nav-links a {
+    font-size: 14px;
+    color: #000000;
+    text-decoration: none;
+    padding: 5px 10px;
+    transition: color 0.3s ease;
+    outline: none;
+}
+
+.nav-links a:focus {
+    outline: none;
+}
+
+.nav-links a.active {
+    color: #201767;
+    font-weight: 600;
+}
+
+.nav-links a:active {
+    outline: none;
+    border: none;
+}
+
+.nav-links a:focus-visible {
+    outline: 2px solid #9D86CA;
+    outline-offset: 2px;
+}
+
+.event-detail {
+    padding: 60px 0;
+}
+
+.back-link {
+    display: inline-block;
+    margin-bottom: 30px;
+    color: #201767;
+    text-decoration: none;
+    font-size: 16px;
+    transition: color 0.3s;
+}
+
+.back-link:hover {
+    color: #655bb6;
+}
+
+.event-header {
+    margin-bottom: 40px;
+}
+
+.event-title {
+    font-size: 42px;
+    color: #000;
+    margin-bottom: 20px;
+    font-weight: 600;
+}
+
+.event-meta {
+    display: flex;
+    gap: 30px;
+    color: #666;
+    font-size: 18px;
+}
+
+.event-meta-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.event-meta-item i {
+    color: #201767;
+}
+
+.event-main-image {
+    width: 100%;
+    height: 500px;
+    border-radius: 30px;
+    overflow: hidden;
+    margin-bottom: 40px;
+}
+
+.event-main-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.event-description {
+    background: white;
+    border-radius: 30px;
+    padding: 40px;
+    margin-bottom: 50px;
+}
+
+.event-description h2 {
+    font-size: 28px;
+    color: #000;
+    margin-bottom: 25px;
+    font-weight: 600;
+}
+
+.event-description p {
+    font-size: 18px;
+    color: #444;
+    line-height: 1.8;
+    margin-bottom: 20px;
+}
+
+.event-photos {
+    margin-top: 50px;
+}
+
+.event-photos h2 {
+    font-size: 28px;
+    color: #000;
+    margin-bottom: 25px;
+    font-weight: 600;
+}
+
+.photos-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+}
+
+.photo-card {
+    border-radius: 20px;
+    overflow: hidden;
+    height: 250px;
+    cursor: pointer;
+    transition: transform 0.3s;
+}
+
+.photo-card:hover {
+    transform: scale(1.05);
+}
+
+.photo-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.9);
+    z-index: 1000;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal.active {
+    display: flex;
+}
+
+.modal-content {
+    max-width: 90%;
+    max-height: 90%;
+}
+
+.modal-content img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.modal-close {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    color: white;
+    font-size: 30px;
+    cursor: pointer;
+    width: 50px;
+    height: 50px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.3s;
+}
+
+.modal-close:hover {
+    background: rgba(255, 255, 255, 0.3);
+}
+
+footer {
+    background-color: #000000;
+    color: white;
+    padding: 40px 0;
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.footer-links a {
+    color: white;
+    text-decoration: none;
+    margin-right: 10px;
+    transition: color 0.3s;
+    font-size: 14px;
+}
+
+.footer-links a:hover {
+    color: #201767;
+}
+
+.footer-info {
+    text-align: right;
+    font-size: 13px;
+}
+
+@media (max-width: 768px) {
+    .header-top {
+        flex-direction: column;
+        text-align: center;
+        gap: 10px;
+    }
+    
+    .logo img {
+        margin: 0 auto;
+        float: none;
+        width: 140px;
+    }
+    
+    .title-header {
+        float: none;
+        margin: 0 auto;
+        max-width: 100%;
+        font-size: 11px;
+    }
+    
+    .nav-links {
+        flex-direction: column;
+        gap: 10px;
+        width: 100%;
+    }
+    
+    .nav-links a {
+        margin: 0;
+        padding: 8px;
+        text-align: center;
+        border: none;
+        border-radius: 0;
+        background-color: transparent;
+        min-height: 44px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    .event-title {
+        font-size: 32px;
+    }
+    
+    .event-meta {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .event-main-image {
+        height: 300px;
+    }
+    
+    .event-description {
+        padding: 25px;
+    }
+    
+    .photos-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .footer-content {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .footer-info {
+        text-align: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .header {
+        padding: 5px 0;
+    }
+    
+    .logo img {
+        width: 100px;
+    }
+    
+    .title-header {
+        font-size: 10px;
+    }
+    
+    .event-title {
+        font-size: 28px;
+    }
+    
+    .event-description p {
+        font-size: 16px;
+    }
+}
+
+@media (hover: none) and (pointer: coarse) {
+    .nav-links a {
+        min-height: 44px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    .photo-card:hover {
+        transform: none;
+    }
+    
+    .modal-close {
+        min-height: 44px;
+        min-width: 44px;
+    }
+}
+    </style>
+</head>
+<body>
+
+    <header class="header">
+        <div class="header-top">
+            <div class="logo"><a href="index.html"><img src="image/logo.png" alt="logo"></a></div>
+            <div class="title-header">Познавай Вселенную — твой путь к звёздам начинается здесь</div>
+        </div>
+        <hr>
+
+        <nav>
+            <div class="nav-links">
+                <a href="index.html">Главная</a>
+                <a href="courses.html">Курсы</a>
+                <a href="calendar.html">Календарь событий</a>
+                <a href="cabinet.html">Личный кабинет</a>
+            </div>
+        </nav>
+    </header>
+
+    <section class="event-detail">
+        <div class="container">
+            <a href="calendar.html" class="back-link">← Вернуться к календарю</a>
+            
+            <div class="event-header">
+                <h1 class="event-title">Голубое микролуние</h1>
+                <div class="event-meta">
+                    <div class="event-meta-item">
+                        2026-05-31
+                    </div>
+                </div>
+            </div>
+        
+            <div class="event-main-image">
+                <img src="image/31_05.jpg" alt="Голубое микролуние">
+            </div>
+            
+            <div class="event-description">
+                <h2>О событии</h2>
+                31 мая на ночном небе можно будет увидеть Голубую Луну – второе полнолуние календарного месяца, которое также станет самым маленьким полнолунием в году, или микролунием. Мы подробно описали это необычное сочетание в нашей специальной статье о Голубом микролунии в мае 2026 года. Поскольку Луна будет близка к апогею (самой удаленной от Земли точке своей орбиты), она будет казаться примерно на 5,5% меньше и на 10,5% тусклее, чем типичная полная Луна. Разница едва заметна невооруженным глазом, но если знаешь, на что ты смотришь, становится гораздо интереснее. Если хотите узнать, чем микролуния отличаются от суперлуний (и почему любителям астрономии нравится следить за обоими), прочтите нашу статью о суперлуниях и микролуниях. Несмотря на название, Луна не становится голубой на самом деле: «Голубая Луна» – это всего лишь название для «лишней» полной Луны. Кстати, Голубая Луна – не единственное «цветное» название для нашего спутника: бывает еще Черная Луна, Кровавая Луна и много других названий, которые звучат не менее интригующе.
+            </div>
+            
+            <div class="event-photos">
+                <h2>Фотографии</h2>
+                <div class="photos-grid">
+                    <div class="photo-card" onclick="openModal('image/31_05_1.jpg')">
+                        <img src="image/31_05_1.jpg" alt="Фото события">
+                    </div>
+                    <div class="photo-card" onclick="openModal('image/31_05_2.jpg')">
+                        <img src="image/31_05_2.jpg" alt="Фото события">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Модальное окно для просмотра фото -->
+    <div class="modal" id="photoModal" onclick="closeModal()">
+        <div class="modal-close" onclick="closeModal()">×</div>
+        <div class="modal-content" id="modalContent">
+            <img src="" alt="Фото события" id="modalImage">
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-links">
+                    <a href="#">Обработка персональных данных</a>
+                </div>
+                <div class="footer-info">
+                    <p>+7 (000) 000-00-00 | astro@site.ru</p>
+                    <p>ИП Якунина Анастасия Александровна | ИНН 111 222 333 444</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+    function openModal(imageSrc) {
+        document.getElementById('modalImage').src = imageSrc;
+        document.getElementById('photoModal').classList.add('active');
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeModal() {
+        document.getElementById('photoModal').classList.remove('active');
+        document.body.style.overflow = 'auto';
+    }
+
+    // Закрытие по ESC
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') {
+            closeModal();
+        }
+    });
+    </script>
+</body>
+</html>
