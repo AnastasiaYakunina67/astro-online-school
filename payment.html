@@ -530,19 +530,7 @@ footer {
         <div class="container">
             <a href="one_course.html" class="back-link">← Назад</a>
             
-            <div id="successMessage" class="success-message" style="display: none;">
-                <div class="success-icon">✓</div>
-                <h2 class="success-title">Заявка на покупку отправлена!</h2>
-                <p class="success-text">
-                    Ваша заявка на курс "Введение в астрономию" успешно отправлена.
-                    <br>Ожидайте подтверждения от администратора.
-                    <br><br>
-                    <small>Через 3 секунды вы будете перенаправлены в личный кабинет...</small>
-                </p>
-                <a href="cabinet.html" class="submit-btn" style="width: auto; padding: 12px 30px; display: inline-block; text-decoration: none;">
-                    Перейти в личный кабинет сейчас
-                </a>
-            </div>
+            
 
             <div id="purchaseContainer">
                 <div class="status-message status-info">
@@ -588,7 +576,7 @@ footer {
                         <div id="errorContainer"></div>
                         
                         <!-- Форма оплаты -->
-                        <form id="payment-form" onsubmit="return false;">
+                        <form id="payment-form">
                             <div class="form-group">
                                 <label class="form-label" for="card_number">Номер карты</label>
                                 <input type="text" class="form-input" id="card_number" name="card_number" 
@@ -621,7 +609,7 @@ footer {
                                        placeholder="example@mail.ru" value="demo@astro.ru">
                             </div>
                             
-                            <button type="submit" class="submit-btn">
+                            <button type="button" class="submit-btn" id="buyButton">
                                 Приобрести курс за 1 490 ₽
                             </button>
                             
@@ -681,6 +669,8 @@ footer {
             }
         }
 
+        
+
         // Функция для сброса границ полей ввода
         function resetInputBorders() {
             const inputs = document.querySelectorAll('#payment-form .form-input');
@@ -709,110 +699,19 @@ footer {
             const successMessage = document.getElementById('successMessage');
             if (successMessage) {
                 successMessage.style.display = 'block';
-                
-                // Автоматический редирект через 3 секунды
-                setTimeout(function() {
-                    window.location.href = 'cabinet.html';
-                }, 3000);
             }
         }
 
-        // Обработка отправки формы
-        const paymentForm = document.getElementById('payment-form');
-        if (paymentForm) {
-            paymentForm.addEventListener('submit', function(e) {
-                e.preventDefault(); // Предотвращаем реальную отправку на сервер
-                
-                let hasErrors = false;
-                let errorMessages = [];
-                
-                // Сбрасываем стили полей
-                resetInputBorders();
-                
-                // Проверка номера карты
-                const cardNumber = document.getElementById('card_number')?.value.replace(/\s/g, '') || '';
-                if (cardNumber === '') {
-                    hasErrors = true;
-                    errorMessages.push('Номер карты обязателен для заполнения');
-                    highlightErrorField('card_number');
-                } else if (!/^\d{16}$/.test(cardNumber)) {
-                    hasErrors = true;
-                    errorMessages.push('Номер карты должен содержать 16 цифр');
-                    highlightErrorField('card_number');
-                }
-                
-                // Проверка срока действия
-                const expiryDate = document.getElementById('expiry_date')?.value || '';
-                if (expiryDate === '') {
-                    hasErrors = true;
-                    errorMessages.push('Срок действия обязателен для заполнения');
-                    highlightErrorField('expiry_date');
-                } else if (!/^\d{2}\/\d{2}$/.test(expiryDate)) {
-                    hasErrors = true;
-                    errorMessages.push('Срок действия должен быть в формате ММ/ГГ');
-                    highlightErrorField('expiry_date');
-                }
-                
-                // Проверка CVV
-                const cvv = document.getElementById('cvv')?.value || '';
-                if (cvv === '') {
-                    hasErrors = true;
-                    errorMessages.push('CVV код обязателен для заполнения');
-                    highlightErrorField('cvv');
-                } else if (!/^\d{3}$/.test(cvv)) {
-                    hasErrors = true;
-                    errorMessages.push('CVV код должен содержать 3 цифры');
-                    highlightErrorField('cvv');
-                }
-                
-                // Проверка имени владельца
-                const cardHolder = document.getElementById('card_holder')?.value || '';
-                if (cardHolder === '') {
-                    hasErrors = true;
-                    errorMessages.push('Имя владельца карты обязательно');
-                    highlightErrorField('card_holder');
-                } else if (cardHolder.length < 3) {
-                    hasErrors = true;
-                    errorMessages.push('Имя владельца должно содержать минимум 3 символа');
-                    highlightErrorField('card_holder');
-                }
-                
-                // Проверка email
-                const email = document.getElementById('email')?.value || '';
-                const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-                if (email === '') {
-                    hasErrors = true;
-                    errorMessages.push('Email обязателен для заполнения');
-                    highlightErrorField('email');
-                } else if (!emailPattern.test(email)) {
-                    hasErrors = true;
-                    errorMessages.push('Введите корректный email адрес');
-                    highlightErrorField('email');
-                }
-                
-                // Если есть ошибки, показываем их
-                if (hasErrors) {
-                    showErrors(errorMessages);
-                } else {
-                    // Ошибок нет - показываем успешное оформление
-                    // Очищаем предыдущие ошибки
-                    showErrors([]);
-                    // Показываем сообщение об успехе и скрываем форму
-                    showSuccessAndRedirect();
-                }
-            });
-            
-            // Сбрасываем цвет границы при фокусе
-            const inputs = paymentForm.querySelectorAll('input');
-            inputs.forEach(input => {
-                input.addEventListener('focus', function() {
-                    this.style.borderColor = '#9D86CA';
-                });
-            });
-        }
+        
         
         // Автоматическое скрытие сообщений
         setupAutoHideMessages();
+
+
+        document.getElementById('buyButton').addEventListener('click', function() {
+            // Валидация и оплата
+            window.location.href = 'cabinet.html';
+        });
     </script>
 </body>
 </html>
