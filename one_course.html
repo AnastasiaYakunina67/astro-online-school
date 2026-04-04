@@ -571,9 +571,16 @@ footer {
     </footer>
     
 <script>
-    document.getElementById('buyButton').addEventListener('click', function() {
-        window.location.href = 'cabinet.html';
-    });
+    // Находим кнопку по правильному ID
+    const buyButton = document.getElementById('buy-btn');
+    
+    if (buyButton) {
+        buyButton.addEventListener('click', function() {
+            window.location.href = 'payment.html';
+        });
+    } else {
+        console.log('Кнопка не найдена'); // Для отладки
+    }
 </script>
         
 </body>
