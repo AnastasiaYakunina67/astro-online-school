@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Оформление покупки</title>
+    <link rel="icon" href="image/favic.png" type="image/x-icon">
     <style>
 * {
     margin: 0;
@@ -587,7 +588,7 @@ footer {
                         <div id="errorContainer"></div>
                         
                         <!-- Форма оплаты -->
-                        <form id="payment-form">
+                        <form id="payment-form" onsubmit="return false;">
                             <div class="form-group">
                                 <label class="form-label" for="card_number">Номер карты</label>
                                 <input type="text" class="form-input" id="card_number" name="card_number" 
