@@ -516,7 +516,10 @@ footer {
                         
                         <div class="course-price">890 ₽</div>
                         
-                            <button href="payment.html" class="buy-btn">Купить курс</button>
+
+                        <button type="button" class="submit-btn" id="buy-btn">
+                            Купить курс
+                        </button>
 
                     </div>
                 </div>
@@ -566,5 +569,12 @@ footer {
             </div>
         </div>
     </footer>
+    
+<script>
+    document.getElementById('buyButton').addEventListener('click', function() {
+        window.location.href = 'cabinet.html';
+    });
+</script>
+        
 </body>
 </html>
